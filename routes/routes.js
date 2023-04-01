@@ -3,7 +3,7 @@ const BotController = require("../controllers/BotController.js");
 const router = express.Router();
 const bot = new BotController();
 router.get("/", (req, res) => {
-  bot.login(req, res);
+  bot.index(req, res);
 });
 // router.get("/bot", (req, res) => {
 //   bot.bot(req, res);
