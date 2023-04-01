@@ -1,15 +1,12 @@
-import knex from "knex";
-import Bot from "../linkedin/Bot.js";
+const knex = require("knex");
+const knexConfig = require("../knexfile.js");
+const knexConnection = knex(knexConfig.development);
 
-const bot = new Bot(
-  "tuzlufettullah@gmail.com",
-  "90252a00mQ",
-  "https://www.linkedin.com/login"
-);
-
-export default class BotController {
+class BotController {
   async login(req, res) {
-    let data = await knex("users").select("*").where("id", 1);
+    let data = await knexConnection("users").select("*");
     res.send(data);
+    return data;
   }
 }
+module.exports = BotController;

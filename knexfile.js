@@ -18,5 +18,6 @@ module.exports = {
       directory: null,
       //directory: __dirname + "/db/seeds/development",
     },
+    useNullAsDefault: true, // burayı ekleyin
   },
 };
