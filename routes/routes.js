@@ -1,12 +1,10 @@
 import express from "express";
-import BotController from "../controllers/BotController.js";
 import dotenv from "dotenv";
+import BotController from "../controllers/BotController.js";
 const router = express.Router();
 const bot = new BotController();
-const result = dotenv.config();
-
 router.get("/", (req, res) => {
-  res.send("Hello World");
+  bot.login(req, res);
 });
 
 export default router;

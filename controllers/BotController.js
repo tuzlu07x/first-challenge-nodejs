@@ -1,3 +1,4 @@
+import knex from "knex";
 import Bot from "../linkedin/Bot.js";
 
 const bot = new Bot(
@@ -7,7 +8,8 @@ const bot = new Bot(
 );
 
 export default class BotController {
-  login(req, res) {
-    bot.login(req, res);
+  async login(req, res) {
+    let data = await knex("users").select("*").where("id", 1);
+    res.send(data);
   }
 }

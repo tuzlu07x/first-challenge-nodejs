@@ -1,19 +1,19 @@
-import module from "module";
-import path from "path";
-const __dirname = path.resolve();
+const dotenv = require("dotenv");
+const path = require("path");
+const knex = require("knex");
 
-export default module.exports = {
+const result = dotenv.config();
+module.exports = {
   development: {
-    client: "mysql",
+    client: result.parsed.DB_CONNECTION,
     connection: {
-      host: "localhost",
-      user: "root",
-      password: "Fatih1234",
-      database: "linkedin",
+      host: result.parsed.DB_HOST,
+      user: result.parsed.DB_USERNAME,
+      password: result.parsed.DB_PASSWORD,
+      database: result.parsed.DB_DATABASE,
+      port: result.parsed.DB_PORT,
     },
-    migrations: {
-      directory: __dirname + "./db/migration",
-    },
+    migrations: {},
     seeds: {
       directory: null,
       //directory: __dirname + "/db/seeds/development",

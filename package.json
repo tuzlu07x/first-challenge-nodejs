@@ -16,7 +16,8 @@
     "mysql": "github:mysqljs/mysql",
     "mysql2": "^3.2.0",
     "nodemon": "^2.0.22",
-    "puppeteer": "^19.8.2"
+    "puppeteer": "^19.8.2",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "knex": "^2.4.2"
