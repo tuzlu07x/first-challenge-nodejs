@@ -1,7 +1,6 @@
-import { json } from "express";
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 
-export default class Bot {
+class Bot {
   constructor(email, password, url) {
     this.email = email;
     this.password = password;
@@ -46,3 +45,4 @@ export default class Bot {
     await browser.close();
   }
 }
+module.exports = Bot;
