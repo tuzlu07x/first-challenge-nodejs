@@ -1,6 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const BotController = require("../controllers/BotController.js");
+const AuthController = require("../controllers/AuthController.js");
 const router = express.Router();
 const app = express();
 
@@ -9,7 +9,7 @@ const {
   validateRegister,
 } = require("../validations/loginValidation.js");
 
-const bot = new BotController();
+const auth = new AuthController();
 
 router.middleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -28,22 +28,18 @@ router.middleware = (req, res, next) => {
 };
 
 router.get("/users", router.middleware, (req, res) => {
-  bot.index(req, res);
-});
-
-router.get("/send", router.middleware, (req, res) => {
-  bot.sendRequest(req, res);
+  auth.index(req, res);
 });
 
 router.get("/", (req, res) => {
-  bot.index(req, res);
+  auth.index(req, res);
 });
 router.post(
   "/register",
   registerValidationRules,
   validateRegister,
   (req, res) => {
-    bot.register(req, res);
+    auth.register(req, res);
   }
 );
 

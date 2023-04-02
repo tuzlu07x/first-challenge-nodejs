@@ -9,7 +9,7 @@ const knexConnection = knex(knexConfig.development);
 knexPaginate.attachPaginate();
 
 const dotEnv = dotenv.config();
-class BotController {
+class AuthController {
   async index(req, res) {
     let data = await knexConnection("users")
       .select("*")
@@ -56,4 +56,4 @@ class BotController {
     return res.send({ user, token });
   }
 }
-module.exports = BotController;
+module.exports = AuthController;
