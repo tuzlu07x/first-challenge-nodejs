@@ -17,5 +17,8 @@ router.post(
     bot.register(req, res);
   }
 );
+router.post("/login", (req, res) => {
+  bot.login(req, res);
+});
 
 module.exports = router;
