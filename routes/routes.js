@@ -31,6 +31,10 @@ router.get("/users", router.middleware, (req, res) => {
   bot.index(req, res);
 });
 
+router.get("/send", router.middleware, (req, res) => {
+  bot.sendRequest(req, res);
+});
+
 router.get("/", (req, res) => {
   bot.index(req, res);
 });

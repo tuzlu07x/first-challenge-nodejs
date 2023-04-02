@@ -1,19 +1,19 @@
-const knex = require("knex");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const knex = require("knex");
+const knexPaginate = require("knex-paginate");
 const knexConfig = require("../knexfile.js");
+
 const knexConnection = knex(knexConfig.development);
-const Bot = require("../Linkedin/Bot.js");
-const botData = new Bot(
-  "tuzlufettullah@gmail.com",
-  "90252a00mQ",
-  "https://www.linkedin.com/login"
-);
+knexPaginate.attachPaginate();
+
 const dotEnv = dotenv.config();
 class BotController {
   async index(req, res) {
-    let data = await knexConnection("users").select("*");
+    let data = await knexConnection("users")
+      .select("*")
+      .paginate({ perPage: 10, currentPage: 1, isLengthAware: true });
     res.send(data);
     return data;
   }
