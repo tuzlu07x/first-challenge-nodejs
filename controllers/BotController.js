@@ -51,7 +51,9 @@ class BotController {
     const token = jwt.sign({ id: user.id }, dotEnv.parsed.JWT_SECRET, {
       expiresIn: 86400,
     });
-    return res.send({ token });
+    res.setHeader("Authorization", "Bearer " + token);
+
+    return res.send({ user, token });
   }
 }
 module.exports = BotController;
