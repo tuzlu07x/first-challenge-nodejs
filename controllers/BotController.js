@@ -1,4 +1,5 @@
 const knex = require("knex");
+const bcrypt = require("bcrypt");
 const knexConfig = require("../knexfile.js");
 const knexConnection = knex(knexConfig.development);
 const Bot = require("../Linkedin/Bot.js");
@@ -18,7 +19,7 @@ class BotController {
     const newUser = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, 10),
     };
     try {
       await knexConnection("users").insert(newUser);

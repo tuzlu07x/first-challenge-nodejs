@@ -5,21 +5,12 @@ const app = express();
 // Middleware to parse request body as JSON
 app.use(express.json());
 
-// Login form validation rules
 const registerValidationRules = [
   body("name")
     .isLength({ min: 3 })
     .withMessage("Name must be at least 3 chars long"),
 
-  body("email")
-    .isEmail()
-    .withMessage("Please enter a valid email")
-    .custom((value, { req }) => {
-      if (value === req.body.email) {
-        throw new Error("Email already in use");
-      }
-      return true;
-    }),
+  body("email").isEmail().withMessage("Please enter a valid email"),
 
   body("password")
     .isLength({ min: 5 })
